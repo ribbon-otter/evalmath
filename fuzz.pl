@@ -11,6 +11,8 @@ my $evalm_path = first {-f $_}  ('./evalm', './build/evalm');
 
 my $test_successful = "yes";
 
+# this system isn't efficient, since it starts a new process for each generated
+# forumla. However, it is good enough since I can just wait.
 for my $i (0 .. 1_000_000) {
     $_ = $i;
     tr#0245678#.+\-*/()#;
