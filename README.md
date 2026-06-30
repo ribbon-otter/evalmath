@@ -21,7 +21,7 @@ int main() {
 
 `evalmath::eval` returns a `std::expected` which on the expected side contains the double which is the answer to the problem.  The unexpected side contains a string error message.
 
-Evalmath is intended for situations, like math expressions in a textbox, where each math formula will only be evaluated once or a few times, and such doesn't offer a separate compilation step. You likely want a different library, perhaps [muparser](https://beltoforion.de/en/muparser/) if you are evaluating the formula each frame with varying inputs, or need more advanced mathematics.
+Evalmath is intended for situations, like math expressions in a textbox, where each math formula will only be evaluated once or a few times, and such doesn't offer a separate compilation step. You likely want a different library, perhaps [muparser](https://beltoforion.de/en/muparser/) or [tinyexpr](https://github.com/codeplea/tinyexpr) if you are evaluating the formula each frame with varying inputs, or need more advanced mathematics.
 
 The error messages are strings in English and are meant to be shown to the user. If you need support for a translation framework or an idea for how to include one without making basic usage more complex, feel free to open a bug report or pull request. 
 
