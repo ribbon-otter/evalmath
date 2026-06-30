@@ -1,7 +1,7 @@
 evalmath is a minimalistic simple-to-call math expression interpretor for C++23. It supports the basic arithmetic operators (+-\*/). All math is done using doubles.
 
 # Usage
-copy `evalmath.h` and `evalmath.cpp` into your project. Compile them both with C++23. You can see an example integration [here](https://github.com/ribbon-otter/LibreSprite/tree/math-expressions/src/evalmath) (`evalmath_tests.cpp` was included there only for the eventually of their copy getting customizations and thus needing testing).
+copy `evalmath.h` and `evalmath.cpp` into your project. Compile them both with C++23. You can see an example integration [here](https://github.com/ribbon-otter/LibreSprite/tree/d1951d56bfdd831b301ab3f901c3f6ddc44b405b/src/evalmath) (`evalmath_tests.cpp` was included there only for the eventually of their copy getting customizations and thus needing testing).
 
 ```C++
 #include "evalmath.h"
