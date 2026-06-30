@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_library(evalmath evalmath.cpp)
 target_compile_options(evalmath PRIVATE -Wall -Wextra -Wpedantic
-    $<$<CXX_COMPILER_ID:GNU>: -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow -Wsign-promo -Wstrict-null-sentinel -Wstrict-overflow=5 -Wundef -Wno-unused -Wno-variadic-macros -Wno-parentheses -fdiagnostics-show-option >
+    $<$<CXX_COMPILER_ID:GNU>: -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow -Wsign-promo -Wstrict-null-sentinel -Wstrict-overflow=5 -Wundef -fdiagnostics-show-option >
     $<$<CXX_COMPILER_ID:Clang>: -Weverything -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-c++20-compat -Wno-pre-c++20-compat-pedantic -Wno-covered-switch-default -Wno-padded>
 )
 target_include_directories(evalmath PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

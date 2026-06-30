@@ -87,6 +87,9 @@ namespace evalmath {
             assert(ec == std::errc()); //there should never be an error
             assert(ptr == num_str.data() + num_str.size()); //and we use up the entire 
                                                             //token value
+            //silence unused value warnings on non-debug builds
+            (void)ptr;
+            (void)ec;
 #ifdef __clang__
 #pragma clang diagnostic pop
 #endif
