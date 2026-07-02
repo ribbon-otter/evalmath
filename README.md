@@ -1,4 +1,4 @@
-evalmath is a minimalistic simple-to-call math expression interpretor for C++23. It supports the basic arithmetic operators (+-\*/). All math is done using doubles.
+evalmath is a simple math expression interpretor for C++23 focused on being easy to call and exposed to the end-user for simple math operations. It supports the basic arithmetic operators (+-\*/). All math is done using doubles, with results guaranteed to be real values (not inf or nan). Specific English error messages are given for invalid formulas like `")3+2"` to be shown to the end user.
 
 # Usage
 copy `evalmath.h` and `evalmath.cpp` into your project. Compile them both with C++23. You can see an example integration [here](https://github.com/ribbon-otter/LibreSprite/tree/d1951d56bfdd831b301ab3f901c3f6ddc44b405b/src/evalmath) (`evalmath_tests.cpp` was included there only for the eventually of their copy getting customizations and thus needing testing).
@@ -10,7 +10,7 @@ int main() {
     auto result = evalmath::eval("2+5*2");
     if (result) {
         //the forumla parsed successfully
-        println("{}", *result);
+        println("my real valued double: {}", *result);
     } else {
         //there was an error
         // result.error() contains a std::string describing the error
@@ -21,7 +21,7 @@ int main() {
 
 `evalmath::eval` returns a `std::expected` which on the expected side contains the double which is the answer to the problem.  The unexpected side contains a string error message.
 
-Evalmath is intended for situations, like math expressions in a textbox, where each math formula will only be evaluated once or a few times, and such doesn't offer a separate compilation step. You likely want a different library, perhaps [muparser](https://beltoforion.de/en/muparser/) or [tinyexpr](https://github.com/codeplea/tinyexpr) if you are evaluating the formula each frame with varying inputs, or need more advanced mathematics.
+Evalmath is intended for situations, like math expressions in a textbox, where each math formula will only be evaluated once or a few times, and such doesn't offer a separate compilation step. You likely want a different library, perhaps [muparser](https://beltoforion.de/en/muparser/) or [tinyexpr](https://github.com/codeplea/tinyexpr) if you are evaluating the formula each frame with varying inputs, or need more advanced mathematics. Consider Tinyexpr or [Miscsrc's eval](https://github.com/wernsey/miscsrc/blob/master/eval.h) if you want a pure C library (or don't want a c++23 standard requirement). This library allocates memory and depends on std, and thus is likely inappropriate for embedded contexts. It is currently unoptimized for performance, though acceptably quick.
 
 The error messages are strings in English and are meant to be shown to the user. If you need support for a translation framework or an idea for how to include one without making basic usage more complex, feel free to open a bug report or pull request. 
 
@@ -33,6 +33,8 @@ Internally evalmath uses a handwritten shift-reduce parser to parse the math exp
 Given the challenge of writing a shift-reduce parser by hand correctly, the perl script `fuzz.pl` generates and calls many combinations characters: both valid and invalid formulas. For the valid formulas (according to evalmath's own judgement), the output is compared against perl's math engine. Thus, evalmath is unlikely to have a bug which incorrectly evaluates a formula; though it is somewhat more possible that a bug exists which rejects a valid formula; though the gtest-based unit tests cover the common ones.
 
 `evalm.cpp` is a simple cli calculator used for testing with the `fuzz.pl`.
+
+Doubles are used for all math because integer division is unintuitive.
 
 # License
 This software is under MIT-0, so you can do whatever you want with it. No attribution required (though still appreciated if you choose to do so). see [LICENSE.md](./LICENSE.md) for details. 

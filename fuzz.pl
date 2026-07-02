@@ -16,15 +16,20 @@ my $test_successful = "yes";
 for my $i (0 .. 1_000_000) {
     $_ = $i;
     tr#0245678#.+\-*/()#;
+    #perl treats ++ and -- as special operation, so we skip those patterns
+    next if /\+\+|--/;
+
     my $evalm = `$evalm_path '$_' 2> /dev/null`;
     chomp $evalm;
     if ($? == 0) {
         my $evalp;
         {
-            local $SIG{__WARN__} = sub { }; 
+            #local $SIG{__WARN__} = sub { }; #silense perl warnings 
             $evalp = eval "$_";
         }
-        unless (defined($evalp)) {next;}
+#        unless (defined($evalp)) {next;} #skip ones perl can't parse
+        # print some samples to reassure me that tests are happening
+        print "$_\n" if rand() < 0.001; 
         unless ($evalp == $evalm) {
             print "oh no: '$_' evalm '$evalm' vs perl '$evalp'\n";
             $test_successful = "no";
